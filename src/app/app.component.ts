@@ -12,6 +12,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
+  activePage: any;
 
   pages: Array<{title: string, component: any}>;
 
@@ -28,6 +29,7 @@ export class MyApp {
       {title: 'Sign Out', component: null} // handled in 'openPage' method
     ];
 
+    this.activePage = this.pages[0];
   }
 
   initializeApp() {
@@ -44,9 +46,14 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     if (page.component) {
       this.nav.setRoot(page.component);
+      this.activePage = page;
       return;
     }
 
     console.log('Sign out...');
+  }
+
+  isPageActive(page) {
+    return page === this.activePage;
   }
 }

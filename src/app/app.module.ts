@@ -6,6 +6,8 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { BountyPage } from '../pages/bounty/bounty';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -23,7 +25,8 @@ const cloudSettings: CloudSettings = {
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    BountyPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ const cloudSettings: CloudSettings = {
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    BountyPage
   ],
   providers: [
     StatusBar,

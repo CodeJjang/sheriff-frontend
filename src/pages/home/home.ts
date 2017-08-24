@@ -25,14 +25,7 @@ export class HomePage {
     public plt: Platform,
     private screenOrientation: ScreenOrientation,
     private cameraPreview: CameraPreview) {
-    this.plt.ready().then((readySource) => {
-      this.cameraPreview.stopCamera().then(e => console.log("stopped", e)).catch(e => console.error("could not stop", e));
-      console.log('ready')
-      // console.log('window.plugins', (window as any).plugins);
-      // console.log('CameraPreview', CameraPreview);
-      // console.log('Platform ready from', readySource);
-      // Platform now ready, execute any required native code
-    });
+    this.cameraPreview.stopCamera().then(e => console.log("stopped", e)).catch(e => console.error("could not stop", e));
 
     this.updateIsLandscape();
     this.screenOrientation.onChange().subscribe(() => this.updateIsLandscape());
@@ -65,10 +58,10 @@ export class HomePage {
           console.log("taking picture");
 
           const takePic = () => {
-            (this.cameraPreview.takePicture as any)({ quality: 70 }, e => this.lastImage = 'data:image/jpeg;base64,' + e[0], e => console.log("kaka", e));
+            (this.cameraPreview.takePicture as any)(e => this.lastImage = 'data:image/jpeg;base64,' + e[0], e => console.log("kaka", e));
           };
 
-          this.intervalNumber = setInterval(takePic, 200);
+          this.intervalNumber = setInterval(takePic, 300);
 
           // return this.cameraPreview.takePicture(undefined).then(e => console.log(e.substr(50))).catch(e => console.log("kaka", e));
         },

@@ -1,6 +1,7 @@
 page-home {
     $snapshot-height: 150px;
     $margin: 5px;
+    $button-color: map-get($colors, primary);    
     .snapshot {
         position: fixed;
         left: $margin;
@@ -22,12 +23,15 @@ page-home {
   .sheriffButton {
     display: block;
     margin: 0 auto;
-    magin-top: 50%;
-    vertical-align: middle;
     height: 250px;
     width: 250px;
     border-radius: 50%;
     font-size: 130%;
     text-align: center;
+    background-color: $button-color;
+
+    &.active {
+      background-color: darken(map-get($colors, secondary), 20%);      
+    }
   }
 }

@@ -2,7 +2,8 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {NativeStorage} from '@ionic-native/native-storage';
+// import {NativeStorage} from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 
 import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pages/pages';
 
@@ -18,7 +19,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-              public splashScreen: SplashScreen, private storage: NativeStorage) {
+              public splashScreen: SplashScreen, private storage: Storage) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -31,7 +32,7 @@ export class MyApp {
       {title: 'Sign Out', component: null} // handled in 'openPage' method
     ];
 
-    this.storage.getItem('user').then(logged => {
+    this.storage.get('user').then(logged => {
       if (logged) {
         console.log('User is logged in, redirecting to Home Page...');
         this.rootPage = HomePage;

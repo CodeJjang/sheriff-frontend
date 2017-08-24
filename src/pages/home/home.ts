@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Platform} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 
 import {
   CameraPreview,
@@ -17,24 +17,12 @@ export class HomePage {
 
   private isSheriffActivated: boolean = false;
 
-  constructor(public navCtrl: NavController, public plt: Platform,
-              private cameraPreview: CameraPreview) {
-    this.plt.ready().then((readySource) => {
-      console.log('ready')
-      // console.log('window.plugins', (window as any).plugins);
-      // console.log('CameraPreview', CameraPreview);
-      // console.log('Platform ready from', readySource);
-      // Platform now ready, execute any required native code
-    });
+  constructor(public navCtrl: NavController, private cameraPreview: CameraPreview) {
+
   }
 
   onClickBecomeSheriff() {
-    console.log('clicked');
-    // this.mediaCapture.captureImage()
-    //   .then(
-    //     (data: MediaFile[]) => console.log(data),
-    //     (err: CaptureError) => console.error(err)
-    //   );
+    console.log('#onClickBecomeSheriff called');
     const cameraPreviewOpts: CameraPreviewOptions = {
       x: 0,
       y: 0,

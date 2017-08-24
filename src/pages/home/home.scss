@@ -1,7 +1,15 @@
 page-home {
+  .buttonWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
   .sheriffButton {
     display: block;
-    margin: auto;
+    margin: 0 auto;
+    magin-top: 50%;
+    vertical-align: middle;
     height: 250px;
     width: 250px;
     border-radius: 50%;

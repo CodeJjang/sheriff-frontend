@@ -12,6 +12,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { CameraPreview } from '@ionic-native/camera-preview';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocationTracker } from '../providers/location-tracker';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -39,6 +42,9 @@ const cloudSettings: CloudSettings = {
   providers: [
     StatusBar,
     SplashScreen,
+    LocationTracker,
+    BackgroundGeolocation,
+    Geolocation,
     ScreenOrientation,
     MediaCapture,
     CameraPreview,

@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Sheriff</h3>
-
-  <button ion-button full primary (click)="onClickBecomeSheriff()">{{ isSheriffActivated ? "Quit for now"  : "Become a Sheriff" }}</button>
+  <div class="buttonWrapper">
+    <button ion-button primary class="sheriffButton" (click)="onClickBecomeSheriff()">{{ isSheriffActivated ? "Quit for now"  : "Become a Sheriff" }}</button>
+  </div>
   <img [ngClass]="{'snapshot': true, 'landscape': isLandscape}" src="{{ lastImage }}" />
 </ion-content>

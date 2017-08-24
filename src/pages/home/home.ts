@@ -44,17 +44,12 @@ export class HomePage {
   }
 
   onClickBecomeSheriff() {
-    console.log('clicked');
-    // this.mediaCapture.captureImage()
-    //   .then(
-    //     (data: MediaFile[]) => console.log(data),
-    //     (err: CaptureError) => console.error(err)
-    //   );
+    console.log('#onClickBecomeSheriff called');
     const cameraPreviewOpts: CameraPreviewOptions = {
-      x: 50,
-      y: 50,
-      width: window.screen.width - 100,
-      height: window.screen.height - 150,
+      x: 0,
+      y: 0,
+      width: 150,
+      height: 150,
       camera: 'rear',
       toBack: true,
       alpha: 1
@@ -70,10 +65,10 @@ export class HomePage {
           console.log("taking picture");
 
           const takePic = () => {
-            (this.cameraPreview.takePicture as any)(e => this.lastImage = 'data:image/jpeg;base64,' + e[0], e => console.log("kaka", e));
+            (this.cameraPreview.takePicture as any)({ quality: 70 }, e => this.lastImage = 'data:image/jpeg;base64,' + e[0], e => console.log("kaka", e));
           };
 
-          this.intervalNumber = setInterval(takePic, 300);
+          this.intervalNumber = setInterval(takePic, 200);
 
           // return this.cameraPreview.takePicture(undefined).then(e => console.log(e.substr(50))).catch(e => console.log("kaka", e));
         },

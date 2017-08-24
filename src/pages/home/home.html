@@ -9,6 +9,10 @@
 
 <ion-content padding>
   <div class="buttonWrapper">
-    <button ion-button primary [ngStyle]="{'background-image': 'url(' + sheriffButtonUrl + ')'}" class="sheriffButton" (click)="onClickBecomeSheriff()">Become a Sheriff!</button>
+    <button ion-button primary [ngStyle]="{'background-image': 'url(' + sheriffButtonUrl + ')'}" class="sheriffButton" (click)="onClickBecomeSheriff()">
+      {{ isSheriffActivated ? "Quit for now"  : "Become a Sheriff" }}
+    </button>
+
   </div>
+  <img [ngClass]="{'snapshot': true, 'landscape': isLandscape}" src="{{ lastImage }}" />
 </ion-content>

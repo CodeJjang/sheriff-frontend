@@ -1,5 +1,19 @@
 page-home {
-  .buttonWrapper{
+  $snapshot-height: 150px;
+  $margin: 5px;
+  .snapshot {
+    position: fixed;
+    left: $margin;
+    bottom: $margin;
+    height: $snapshot-height;
+
+    &.landscape {
+      transform: rotate(-90deg);
+      left: -$snapshot-height + $margin;
+      transform-origin: $snapshot-height 0;
+    }
+  }
+  .buttonWrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;

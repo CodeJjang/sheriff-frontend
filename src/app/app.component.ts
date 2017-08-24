@@ -32,9 +32,11 @@ export class MyApp {
     ];
 
     this.storage.getItem('user').then(logged => {
-      if (logged) {
+      if (logged)
+        console.log('User is logged in, redirecting to Home Page...');
         this.rootPage = HomePage;
       } else {
+        console.log('User is logged out, redirecting to Login Page...');
         this.rootPage = LoginPage;
       }
     }).catch((e) => console.log('Error extracting user from storage', e));

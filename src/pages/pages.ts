@@ -6,3 +6,4 @@ export * from './list/list';
 export * from './bounty/bounty';
 export * from './statistics/statistics';
 export * from './about/about';
+export * from './login/login';

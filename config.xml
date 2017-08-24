@@ -3,7 +3,7 @@
     <name>Sheriff</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.42.159:8100" />
+    <content original-src="index.html" src="http://192.168.1.106:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -90,10 +90,16 @@
     <allow-navigation href="http://192.168.42.152:8100" />
     <allow-navigation href="http://192.168.43.223:8100" />
     <allow-navigation href="http://192.168.42.159:8100" />
+    <allow-navigation href="http://192.168.1.106:8100" />
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-camera-preview" spec="^0.9.0" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
+    <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
+    <plugin name="cordova-plugin-mauron85-background-geolocation" spec="^2.2.5">
+        <variable name="ACCOUNT_TYPE" value="$PACKAGE_NAME.account" />
+        <variable name="CONTENT_AUTHORITY" value="$PACKAGE_NAME" />
+    </plugin>
     <plugin name="cordova-plugin-media-capture" spec="^1.4.3" />
     <plugin name="cordova-plugin-screen-orientation" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />

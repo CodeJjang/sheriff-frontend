@@ -8,7 +8,6 @@ page-home {
         left: $margin;
         bottom: $margin;
         height: $snapshot-height;
-
         &.landscape {
             transform: rotate(-90deg);
             left: -$snapshot-height + $margin;

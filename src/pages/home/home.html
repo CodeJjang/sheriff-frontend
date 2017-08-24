@@ -10,17 +10,17 @@
 <ion-content padding >
   <div [ngClass]="{'wrapper': true, 'active': isSheriffActivated}">
       <div class="loader-radar">
-          <div class="moving-dot-1"></div>  
+          <div class="moving-dot-1"></div>  \
           <div class="moving-dot-1 animate-delay"></div>  
           <div class="moving-dot-2"></div>  
           <div class="moving-dot-2 animate-delay"></div>            
           <div class="moving-dot-3"></div>  
-        </div>      
+      </div>      
   </div>
   <div [ngClass]="{'wrapper': true, 'active': isSheriffActivated}">
     <button ion-button primary class="sheriffButton" [ngStyle]="{'background-image': 'url(' + sheriffButtonUrl + ')'}" class="sheriffButton" (click)="onClickBecomeSheriff()">
       {{ isSheriffActivated ? "Quit Sheriff"  : "Become a Sheriff!" }}
     </button>
   </div>
-  <img [ngClass]="{'snapshot': true, 'landscape': isLandscape}" src="{{ lastImage }}" />
+  <img [ngClass]="{'snapshot': true, 'landscape': isLandscape}" [src]="lastImage" />
 </ion-content>

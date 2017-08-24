@@ -3,8 +3,7 @@
     <name>Sheriff</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.0.131:8100" />
-    <content original-src="index.html" src="http://192.168.0.131:8100" />
+    <content original-src="index.html" src="http://192.168.42.159:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -87,6 +86,10 @@
     <allow-navigation href="http://192.168.0.128:8100" />
     <allow-navigation href="http://192.168.42.76:8100" />
     <allow-navigation href="http://192.168.0.131:8100" />
+    <allow-navigation href="http://192.168.0.100:8100" />
+    <allow-navigation href="http://192.168.42.152:8100" />
+    <allow-navigation href="http://192.168.43.223:8100" />
+    <allow-navigation href="http://192.168.42.159:8100" />
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-camera-preview" spec="^0.9.0" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />

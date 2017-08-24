@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import {NgZone} from '@angular/core';
 
 import {
   CameraPreview,
@@ -19,12 +20,13 @@ export class HomePage {
   private isSheriffActivated: boolean = false;
   private sheriffButtonUrl = 'assets/images/become_sheriff_icon.png';
   private lastImage: string = null;
-  private intervalNumber: number = undefined;
+  private timeoutId: number = undefined;
   private isLandscape: boolean;
 
   constructor(public navCtrl: NavController,
     public plt: Platform,
     private screenOrientation: ScreenOrientation,
+    private zone: NgZone,
     private cameraPreview: CameraPreview) {
 
     this.cameraPreview.stopCamera().then(e => console.log("stopped", e)).catch(e => console.error("could not stop", e));
@@ -40,31 +42,35 @@ export class HomePage {
   onClickBecomeSheriff() {
     console.log('#onClickBecomeSheriff called');
     const cameraPreviewOpts: CameraPreviewOptions = {
-      x: 0,
-      y: 0,
+      x: 5,
+      y: 5,
       width: 150,
       height: 150,
       camera: 'rear',
-      toBack: true,
-      alpha: 1
+      toBack: false
     };
 
     if (!this.isSheriffActivated) {
       // start camera
       console.log('Starting camera...');
-
+      
       this.cameraPreview.startCamera(cameraPreviewOpts).then(
         (res) => {
           console.log(res)
-          console.log("taking picture");
-
+          
           const takePic = () => {
-            (this.cameraPreview.takePicture as any)(e => this.lastImage = 'data:image/jpeg;base64,' + e[0], e => console.log("kaka", e));
+            console.log("taking picture");
+            (this.cameraPreview.takePicture as any)(e => {
+              console.log("took it! " + e[0].substring(0,100));
+              this.zone.run(() => this.lastImage = 'data:image/jpeg;base64,' + e[0]);
+              setTimeout(takePic, 300);
+            }, e => alert("kaka " + e));
           };
 
-          this.intervalNumber = setInterval(takePic, 300);
-
-          // return this.cameraPreview.takePicture(undefined).then(e => console.log(e.substr(50))).catch(e => console.log("kaka", e));
+          this.timeoutId = setTimeout(() => {
+            // this.cameraPreview.setFocusMode(this.cameraPreview.FOCUS_MODE.CONTINUOUS_PICTURE);
+            takePic()
+          }, 1000);
         },
         (err) => {
           console.log(err)
@@ -72,7 +78,7 @@ export class HomePage {
     } else {
       console.log('Stopping camera...');
       this.cameraPreview.stopCamera();
-      clearInterval(this.intervalNumber);
+      clearTimeout(this.timeoutId);
       this.lastImage = null;
     }
     this.isSheriffActivated = !this.isSheriffActivated;

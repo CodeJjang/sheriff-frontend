@@ -1,6 +1,6 @@
 {
   "name": "sheriff-frontend",
-  "app_id": "",
+  "app_id": "278a9abc",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

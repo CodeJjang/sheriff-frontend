@@ -1,3 +1,9 @@
+<!--
+  Generated template for the BountyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -8,5 +14,65 @@
 </ion-header>
 
 <ion-content padding>
-  <p>bounty</p>
+
+  <ion-card id="bounty-top">
+     <ion-grid>
+      <ion-row>
+        <ion-col class="alignmiddle">
+           <ion-icon ios="ios-person" md="md-person" class="icon50 round-icon"></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="alignmiddle">
+           <b>Eliran Efron</b>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <div>
+            <button ion-button color="secondary">
+            <ion-icon name="cash" isActive="false" class="icon20"></ion-icon> &nbsp;
+             Withdraw (200$)</button>
+          </div>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <ion-list-header><b>My Catches</b></ion-list-header>
+      <ion-item>
+        <ion-avatar item-start>
+          <ion-icon ios="ios-car" md="md-car" isActive="false"></ion-icon>  
+        </ion-avatar>
+        <h2>Audi A1 (+75$)</h2>
+        <h4>77-777-77</h4>
+        <p>Found Near Batya's Souvenir</p>
+      </ion-item>
+      <ion-item>
+        <ion-avatar item-start>
+          <ion-icon ios="ios-car" md="md-car" isActive="false"></ion-icon>  
+        </ion-avatar>
+        <h2>Bmw M2 (+100$)</h2>
+        <h4>22-222-22</h4>
+        <p>Found Near Dimona</p>
+      </ion-item>
+      <ion-item>
+        <ion-avatar item-start>
+          <ion-icon  ios="ios-car" md="md-car" isActive="false"></ion-icon>  
+        </ion-avatar>
+        <h2>Ford Focus (+25$)</h2>
+        <h4>11-111-11</h4>
+        <p>Found Near Tel-Aviv</p>
+      </ion-item>
+    </ion-list>
+
+
+  </ion-card>
+
 </ion-content>

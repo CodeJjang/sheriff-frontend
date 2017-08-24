@@ -2,8 +2,8 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-// import {NativeStorage} from '@ionic-native/native-storage';
-import { Storage } from '@ionic/storage';
+import {Storage} from '@ionic/storage';
+import {Facebook} from '@ionic-native/facebook';
 
 import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pages/pages';
 
@@ -19,7 +19,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-              public splashScreen: SplashScreen, private storage: Storage) {
+              public splashScreen: SplashScreen, private storage: Storage, private fb: Facebook) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -63,7 +63,11 @@ export class MyApp {
       return;
     }
 
-    console.log('Sign out...');
+    console.log('Signing out...');
+    return this.storage.remove('user')
+      .then(() => this.fb.logout())
+      .then(() => this.nav.push(LoginPage))
+      .catch(e => console.log('Sign out failed', e));
   }
 
   isPageActive(page) {

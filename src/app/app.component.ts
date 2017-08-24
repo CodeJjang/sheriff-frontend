@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import {NativeStorage} from '@ionic-native/native-storage';
 
 import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pages/pages';
 
@@ -13,11 +14,11 @@ export class MyApp {
 
   rootPage: any = LoginPage;
   activePage: any;
-  logged = false;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+              public splashScreen: SplashScreen, private storage: NativeStorage) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -30,18 +31,13 @@ export class MyApp {
       {title: 'Sign Out', component: null} // handled in 'openPage' method
     ];
 
-    // this.storage.get('isLogged').then(logged => {
-    //   if (logged) {
-    //     this.nav.setRoot(HomePage);
-    //   } else {
-    //     this.nav.setRoot(LoginPage);
-    //   }
-
-    if (this.logged) {
-      this.rootPage = HomePage;
-    } else {
-      this.rootPage = LoginPage;
-    }
+    this.storage.getItem('user').then(logged => {
+      if (logged) {
+        this.rootPage = HomePage;
+      } else {
+        this.rootPage = LoginPage;
+      }
+    }).catch((e) => console.log('Error extracting user from storage', e));
 
     this.activePage = this.pages[0];
   }

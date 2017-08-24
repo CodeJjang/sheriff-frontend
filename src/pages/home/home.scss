@@ -1,34 +1,246 @@
 page-home {
-  $snapshot-height: 150px;
-  $margin: 5px;
-  .snapshot {
-    position: fixed;
-    left: $margin;
-    bottom: $margin;
-    height: $snapshot-height;
+    $snapshot-height: 150px;
+    $margin: 5px;
+    $button-color: map-get($colors, primary);    
+    $button-size: 250px;
+    .snapshot {
+        position: fixed;
+        left: $margin;
+        bottom: $margin;
+        height: $snapshot-height;
 
-    &.landscape {
-      transform: rotate(-90deg);
-      left: -$snapshot-height + $margin;
-      transform-origin: $snapshot-height 0;
+        &.landscape {
+            transform: rotate(-90deg);
+            left: -$snapshot-height + $margin;
+            transform-origin: $snapshot-height 0;
+        }
     }
-  }
-  .buttonWrapper {
+  .wrapper {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    overflow: hidden;
+
+    &>* {
+      height: $button-size;
+      width: $button-size;
+    }
+
+    &.active {
+      .loader-radar {
+        opacity: 0.6;
+      }
+
+      .sheriffButton {
+        // background-color: darken(map-get($colors, secondary), 20%);      
+        background-image: none !important;
+      }
+    }
+    .loader-radar {
+      opacity: 0;
+    }
   }
   .sheriffButton {
     display: block;
     margin: 0 auto;
-    magin-top: 50%;
-    vertical-align: middle;
-    height: 250px;
-    width: 250px;
-    border-radius: 50%;
+    border-radius: 50% 50%;
     font-size: 160%;
     text-align: center;
-    background-size: contain;
+    background-position: center bottom;
+    background-size: auto 50%;
+    background-repeat: no-repeat;
+    background-color: darken($button-color, 5%);
+    box-shadow: 0 0 35px black;
   }
+  
+
+  // ----------------------------------------------
+// -------- loader-11 ---------------------------
+// ----------------------------------------------
+$fz: unquote('calc(1vw + 1vh - .6vmin)');
+$time: 1s; // time for delay/timing of loaders
+// @media (min-width: 400px) and (max-width: 1024px) { body { $fz: calc(13px + (14 - 11) * ( (100vw - 400px) / ( 1024 - 400))); } }
+// @media (min-width: 1024px) { body { $fz: 14px; } }
+
+$unnecessary-efx: true;
+
+$f: unquote("'Podkova', serif");
+$fb: unquote("'Trebuchet MS', Helvetica, sans-serif");
+// colors
+$random_color: rgba(random(255),random(255),random(255),.5);
+
+$c: ( // colors
+	t: transparent,
+	s: #000,
+	w: #fff,
+	gr: desaturate(rgb(random(120)+100,random(120)+100,random(120)+100), 100%),
+	r: rgb(random(255),random(150),random(150)),
+	g: rgb(random(150),random(255),random(150)),
+	b: rgb(random(150),random(150),random(255)),
+	bg: $random_color,
+	cp: ( // color palette
+		1: #081E3F,
+		2: yellow,
+		3: #0E5F76,
+		4: white,
+	),
+);
+
+[class*='loader'] {
+	display: inline-block;
+	margin: 0 auto;
+	cursor: wait;
+	text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	// -webkit-box-reflect: below .25em linear-gradient(rgba(#fff, .4), rgba(#fff, .1));
+}
+
+
+.loader-radar { // radar loader
+  position: relative;
+  border-radius: 50%;
+  pointer-events: none;
+	overflow: hidden;
+	border: 1px solid map-get(map-get($c, cp), 3);
+	z-index: 1;
+	background-color: rgba(map-get(map-get($c, cp), 2), .2);
+	background-image:
+		repeating-radial-gradient(
+			map-get($c, t) 0,
+			map-get($c, t) .39em,
+			rgba(map-get(map-get($c, cp), 2), .5) .45em,
+			rgba(map-get(map-get($c, cp), 2), .5) .5em
+		);
+
+	#toggle:checked ~ #sect & { // unnecessary efx
+		background-image:
+			repeating-radial-gradient(
+				map-get($c, t) 0,
+				map-get($c, t) .39em,
+				rgba(map-get(map-get($c, cp), 2), .5) .45em,
+				rgba(map-get(map-get($c, cp), 2), .5) .5em
+			),
+			repeating-radial-gradient(
+				map-get($c, t) 0,
+				map-get($c, t) .39em,
+				rgba(map-get($c, s), .25) .45em,
+				rgba(map-get($c, s), .25) .5em
+			);
+		background-position: 0px 0px, 1px 1px;
+			box-shadow: 
+				.25em .25em .25em rgba(map-get($c, s), .25),
+				inset .25em .25em .25em rgba(map-get($c, s), .25);
+	}
+	
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		display: block;
+	}
+	
+	&:before {
+		z-index: 0;
+		width: 1.5em;
+		height: $button-size/2;
+		top: 50%;
+		left: 50%;
+		transform-origin: left top;
+		border-left: .1em solid map-get(map-get($c, cp), 4);
+		background-image: linear-gradient(
+			to right,
+			rgba(map-get(map-get($c, cp), 2), .75) 0%,
+			transparent 85%
+		);
+		// box-shadow: inset 0 .25em .5em map-get(map-get($c, cp), 1);
+		animation: radar $time*2 infinite linear;
+	}
+	
+
+// -------- loader-11 keyframes -----------------
+@keyframes radar {
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+@keyframes radarDotGlow {
+	0%, 59.9%, 87%, 100% {
+		color: rgba(map-get(map-get($c, cp), 4), .33);
+		box-shadow: 0 0 .1em .05em currentColor;
+	}
+	62% {
+		color: rgba(map-get(map-get($c, cp), 4), 1);
+		box-shadow: 0 0 .1em .1em currentColor;
+	}
+}
+
+@keyframes radarDotMove {
+	0% {
+		top: 0%;
+		left: 85%;
+	}
+	40% {
+		top: 30%;
+		left: 70%;
+	}
+	100% {
+		top: 50%;
+		left: 50%;
+	}
+}
+
+
+@mixin move-animation($name, $x, $y, $mod) {
+  @keyframes #{$name} {
+    0% {
+      top: $x;
+      left: $y;
+    }
+    40% {
+      top: (50% + $x) * $mod / 5;
+      left: (50% + $y) $mod / 8;
+    }
+    100% {
+      top: 50%;
+      left: 50%;
+    }
+  }
+}
+
+@mixin moving-dot-class($name, $x, $y, $mod) {
+  @include move-animation($name, $x, $y, $mod);
+  
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation:
+    radarDotGlow $time*2 infinite linear,
+    $name $time*15/$mod infinite ease-out;
+}
+
+.moving-dot-1 {
+  @include moving-dot-class("moving-dot-1", 0%-20%, 85%+20%, random(4));
+}
+
+.moving-dot-2 {
+  @include moving-dot-class("moving-dot-2", 35%-50%, 0%-50%, random(4));
+}
+
+.moving-dot-3 {
+  @include moving-dot-class("moving-dot-3", 85%-20%, 100%-20%, random(4));
+}
+}
+
+.animate-delay {
+  animation-delay: 2s !important;
+}
+
 }

@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
+import { Facebook } from '@ionic-native/facebook';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
@@ -48,6 +49,7 @@ const cloudSettings: CloudSettings = {
     ScreenOrientation,
     MediaCapture,
     CameraPreview,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

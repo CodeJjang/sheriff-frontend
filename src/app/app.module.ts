@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MediaCapture } from '@ionic-native/media-capture';
 import { CameraPreview } from '@ionic-native/camera-preview';
@@ -38,6 +39,7 @@ const cloudSettings: CloudSettings = {
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     MediaCapture,
     CameraPreview,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

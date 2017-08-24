@@ -10,5 +10,6 @@
 <ion-content padding>
   <h3>Sheriff</h3>
 
-  <button ion-button full primary (click)="onClickBecomeSheriff()">Become a Sheriff</button>
+  <button ion-button full primary (click)="onClickBecomeSheriff()">{{ isSheriffActivated ? "Quit for now"  : "Become a Sheriff" }}</button>
+  <img [ngClass]="{'snapshot': true, 'landscape': isLandscape}" src="{{ lastImage }}" />
 </ion-content>

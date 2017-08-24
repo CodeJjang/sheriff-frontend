@@ -1,43 +1,48 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { HttpModule } from '@angular/http';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
 import { MyApp } from './app.component';
-import { HomePage, ListPage, BountyPage, StatisticsPage, AboutPage } from '../pages/pages';
+import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ServerApiProvider } from '../providers/server-api/server-api';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { CameraPreview } from '@ionic-native/camera-preview';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '278a9abc'
+  }
+};
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
-    BountyPage,
-    StatisticsPage,
-    AboutPage
+    ListPage
   ],
   imports: [
     BrowserModule,
-    HttpModule,
     IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
-    BountyPage,
-    StatisticsPage,
-    AboutPage
+    ListPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServerApiProvider
+    ScreenOrientation,
+    MediaCapture,
+    CameraPreview,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

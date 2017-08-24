@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -8,11 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <div class="buttonWrapper">
+    <button ion-button primary [ngStyle]="{'background-image': 'url(' + sheriffButtonUrl + ')'}" class="sheriffButton" (click)="onClickBecomeSheriff()">
+      {{ isSheriffActivated ? "Quit Sheriff"  : "Become a Sheriff!" }}
+    </button>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  </div>
+  <img [ngClass]="{'snapshot': true, 'landscape': isLandscape}" src="{{ lastImage }}" />
 </ion-content>

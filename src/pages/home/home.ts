@@ -17,6 +17,7 @@ import {
 export class HomePage {
 
   private isSheriffActivated: boolean = false;
+  private sheriffButtonUrl = 'assets/images/become_sheriff_icon.png';
   private lastImage: string = null;
   private intervalNumber: number = undefined;
   private isLandscape: boolean;
@@ -25,8 +26,8 @@ export class HomePage {
     public plt: Platform,
     private screenOrientation: ScreenOrientation,
     private cameraPreview: CameraPreview) {
-    this.cameraPreview.stopCamera().then(e => console.log("stopped", e)).catch(e => console.error("could not stop", e));
 
+    this.cameraPreview.stopCamera().then(e => console.log("stopped", e)).catch(e => console.error("could not stop", e));
     this.updateIsLandscape();
     this.screenOrientation.onChange().subscribe(() => this.updateIsLandscape());
   }

@@ -3,7 +3,7 @@ import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage} from '../pages/pages';
+import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pages/pages';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,8 +11,9 @@ import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage} from '../page
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
   activePage: any;
+  logged = false;
 
   pages: Array<{title: string, component: any}>;
 
@@ -28,6 +29,19 @@ export class MyApp {
       {title: 'About', component: AboutPage},
       {title: 'Sign Out', component: null} // handled in 'openPage' method
     ];
+
+    // this.storage.get('isLogged').then(logged => {
+    //   if (logged) {
+    //     this.nav.setRoot(HomePage);
+    //   } else {
+    //     this.nav.setRoot(LoginPage);
+    //   }
+
+    if (this.logged) {
+      this.rootPage = HomePage;
+    } else {
+      this.rootPage = LoginPage;
+    }
 
     this.activePage = this.pages[0];
   }

@@ -4,6 +4,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import {NgZone} from '@angular/core';
 import { LocationTracker } from '../../providers/location-tracker';
 
+import { HomeService } from '../../services/home.service';
+
 import {
   CameraPreview,
   CameraPreviewPictureOptions,
@@ -26,6 +28,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
     public plt: Platform,
+    private homeService: HomeService,
     private screenOrientation: ScreenOrientation,
     private locationTracker: LocationTracker,
     private zone: NgZone,
@@ -70,6 +73,12 @@ export class HomePage {
               console.log("took it! " + e[0].substring(0,100));
               console.log("was at " + this.locationTracker.lat + "/" + this.locationTracker.lng);
               this.zone.run(() => this.lastImage = 'data:image/jpeg;base64,' + e[0]);
+
+              this.homeService.sendImage({
+                base64Image: e[0],
+                lat: this.locationTracker.lat + "",
+                lon: this.locationTracker.lng + ""
+              });
               setTimeout(takePic, 300);
             }, e => alert("kaka " + e));
           };

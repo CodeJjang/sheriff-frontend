@@ -8,18 +8,24 @@ page-login {
   .logo {
     margin-top: 15%;
   }
-  h3,h4,h2 {
+  h3, h4, h2, h6 {
     text-align: center;
     color: white;
     text-shadow: 1px 1px 3px #000000;
     font-weight: bold;
   }
-button {
-  margin-left: 5px;
-  margin-right: 5px;
-  text-align: center;
-  margin: 0 auto;
-  vertical-align: middle;
-}
+  h6 {
+    margin-top: 10px;
+  }
+  .buttonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  button {
+    text-align: center;
+    width: 80%;
+  }
 
 }

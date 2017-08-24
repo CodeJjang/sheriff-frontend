@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MediaCapture } from '@ionic-native/media-capture';
+import { CameraPreview } from '@ionic-native/camera-preview';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -38,6 +39,7 @@ const cloudSettings: CloudSettings = {
     StatusBar,
     SplashScreen,
     MediaCapture,
+    CameraPreview,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

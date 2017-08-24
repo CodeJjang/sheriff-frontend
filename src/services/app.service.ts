@@ -4,7 +4,7 @@ import { Observable }  from 'rxjs/Rx';
 
 @Injectable()
 export class AppService {
-    public domain: string = 'http://localhost:58213/';
+    public domain: string = 'http://52.178.70.159/';
 
     public headers: Headers = new Headers({
         'Content-Type': 'application/json'

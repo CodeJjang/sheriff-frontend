@@ -32,7 +32,7 @@ export class MyApp {
     ];
 
     this.storage.getItem('user').then(logged => {
-      if (logged)
+      if (logged) {
         console.log('User is logged in, redirecting to Home Page...');
         this.rootPage = HomePage;
       } else {

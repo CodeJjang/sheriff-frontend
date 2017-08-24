@@ -16,6 +16,7 @@ import {
 export class HomePage {
 
   private isSheriffActivated: boolean = false;
+  private sheriffButtonUrl = 'assets/images/become_sheriff_icon.png';
 
   constructor(public navCtrl: NavController, private cameraPreview: CameraPreview) {
 

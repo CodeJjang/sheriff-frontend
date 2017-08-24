@@ -1,14 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+import {BrowserModule} from '@angular/platform-browser';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
+import {Facebook} from '@ionic-native/facebook';
+import {NativeStorage} from '@ionic-native/native-storage';
 
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import {LoginPage} from '../pages/login/login';
 import { BountyPage } from '../pages/bounty/bounty';
+import {StatisticsPage} from '../pages/statistics/statistics';
 
 import { AppService } from "../services/app.service";
 import { HomeService } from "../services/home.service";
@@ -33,7 +37,9 @@ const cloudSettings: CloudSettings = {
     MyApp,
     HomePage,
     ListPage,
-    BountyPage
+    BountyPage,
+    LoginPage,
+    StatisticsPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,9 @@ const cloudSettings: CloudSettings = {
     MyApp,
     HomePage,
     ListPage,
-    BountyPage
+    BountyPage,
+    LoginPage,
+    StatisticsPage
   ],
   providers: [
     AppService,
@@ -59,7 +67,10 @@ const cloudSettings: CloudSettings = {
     ScreenOrientation,
     MediaCapture,
     CameraPreview,
+    Facebook,
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

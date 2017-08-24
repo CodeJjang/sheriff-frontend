@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-bounty',
-  templateUrl: 'bounty.html'
+  templateUrl: 'bounty.html',
 })
 export class BountyPage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
 }

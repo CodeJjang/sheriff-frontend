@@ -10,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServerApiProvider } from '../providers/server-api/server-api';
 
+import { Facebook }  from '@ionic-native/facebook';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +36,7 @@ import { ServerApiProvider } from '../providers/server-api/server-api';
     AboutPage
   ],
   providers: [
+    Facebook,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

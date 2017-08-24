@@ -73,8 +73,7 @@
                 "APP_ID": "326241641171145",
                 "APP_NAME": "sheriff"
             },
-            "cordova-plugin-nativestorage": {}
-            "cordova-plugin-screen-orientation": {},
+            "cordova-plugin-nativestorage": {},
             "cordova-plugin-geolocation": {},
             "cordova-plugin-mauron85-background-geolocation": {
                 "ACCOUNT_TYPE": "$PACKAGE_NAME.account",

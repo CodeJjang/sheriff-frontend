@@ -29,6 +29,7 @@ export class HomeService {
             return this.http.post(this.appService.domain + route, JSON.stringify(objectToSend), this.appService.options)
                 .subscribe(e => {
                     const res = e.json();
+                    console.log(JSON.stringify(e));
 
                     if (!res) return;
 
@@ -45,7 +46,7 @@ export class HomeService {
                     
                     console.log("Snapshot received - " + JSON.stringify(target));
                     this.toastCtrl.create({
-                        message: `Good job, You just helped us make the world a better place!`,
+                        message: `You just helped us make the world a better place!`,
                         position: "bottom",
                         duration: 5000
                     }).present();

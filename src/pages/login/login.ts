@@ -74,14 +74,14 @@ export class LoginPage {
   }
 
   saveUserToStorage(user, accessToken) {
-    this.storage.set('user', {
+    return this.storage.set('user', {
       name: user.name,
       picture: user.picture,
       accessToken: accessToken
+    }).then(() => {
+      console.log('User saved, moving to HomePage...');
+      return Promise.resolve();
     });
-    console.log('User saved, moving to HomePage...');
-    return Promise.resolve();
-
   }
 
   navigateHomePage() {

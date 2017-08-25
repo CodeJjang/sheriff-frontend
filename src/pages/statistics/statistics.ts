@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
+// import {GeneralStatisticsPage} from '../general-statistics/general-statistics';
+import {PersonalStatisticsPage} from '../personal-statistics/personal-statistics';
+import {GeneralStatisticsPage} from "../general-statistics/general-statistics";
 /**
  * Generated class for the StatisticsPage page.
  *
@@ -9,12 +11,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 
 @Component({
-  selector: 'page-statistics',
-  templateUrl: 'statistics.html',
+  selector: 'statistics-page',
+  templateUrl: 'statistics.html'
 })
 export class StatisticsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private personalStatisticsPage: any = PersonalStatisticsPage;
+  private generalStatisticsPage: any = GeneralStatisticsPage;
+  isAndroid: boolean = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
+    this.isAndroid = platform.is('android');
+
   }
 
   ionViewDidLoad() {
@@ -22,3 +30,5 @@ export class StatisticsPage {
   }
 
 }
+
+

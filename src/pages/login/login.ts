@@ -75,6 +75,7 @@ export class LoginPage {
 
   saveUserToStorage(user, accessToken) {
     return this.storage.set('user', {
+      userID: user.userID,
       name: user.name,
       picture: user.picture,
       accessToken: accessToken

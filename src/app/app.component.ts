@@ -14,7 +14,7 @@ import {HomePage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pag
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
   activePage: any;
 
   pages: Array<{title: string, component: any}>;
@@ -35,10 +35,12 @@ export class MyApp {
     this.storage.get('user').then(logged => {
       if (logged) {
         console.log('User is logged in, redirecting to Home Page...');
-        this.rootPage = HomePage;
+        // this.rootPage = HomePage
+        this.openPage(HomePage);
       } else {
         console.log('User is logged out, redirecting to Login Page...');
-        this.rootPage = LoginPage;
+        // this.rootPage = LoginPage;
+        this.openPage(LoginPage);
       }
     }).catch((e) => console.log('Error extracting user from storage', e));
 

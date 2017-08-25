@@ -3,8 +3,9 @@ import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
 import {Facebook} from '@ionic-native/facebook';
-import {NativeStorage} from '@ionic-native/native-storage';
 import { BackgroundMode } from '@ionic-native/background-mode';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 import { HttpModule } from '@angular/http';
 
@@ -46,7 +47,8 @@ const cloudSettings: CloudSettings = {
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -70,7 +72,6 @@ const cloudSettings: CloudSettings = {
     MediaCapture,
     CameraPreview,
     Facebook,
-    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

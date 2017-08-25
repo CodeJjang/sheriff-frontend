@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, Platform} from 'ionic-angular';
 import {Facebook, FacebookLoginResponse} from '@ionic-native/facebook';
-import {NativeStorage} from '@ionic-native/native-storage';
+// import {NativeStorage} from '@ionic-native/native-storage';
+import {Storage} from '@ionic/storage';
 import {HomePage} from '../home/home';
 import {Promise} from 'es6-promise';
 
@@ -23,7 +24,7 @@ export class LoginPage {
   private permissions = ['public_profile', 'user_friends', 'email'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: Facebook,
-              private storage: NativeStorage) {
+              private storage: Storage, private platform: Platform) {
   }
 
   ionViewDidLoad() {
@@ -31,41 +32,62 @@ export class LoginPage {
   }
 
   onFacebookLoginClick() {
-    this.fb.login(this.permissions)
-      .then((res: FacebookLoginResponse) => this.onSuccessfulFacebookLogin(res))
-      .catch(e => console.log('Error logging into Facebook', e));
-    // this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
+    if (this.platform.is('cordova')) {
+      console.log('Running on mobile, authenticating with facebook...');
+      this.fb.login(this.permissions)
+        .then((res: FacebookLoginResponse) => this.onSuccessfulFacebookLogin(res))
+        .catch(e => console.log('Error logging into Facebook', e));
+      // this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
+    } else {
+      console.log('Running on browser, skipping facebook and mocking user...');
+
+      let user = {
+        userID: '10207158110789998',
+        name: 'Aviad Moreshet'
+      };
+      let accessToken = 'EAAEotw0iCMkBAEZCRh5suzz0cqX8atFjV0ufaR9h1umaZAZCYxYZAWhysOQZBkmLZACKPIHfXRyVtphLi49ULaJDDqNVsDixF335DpJoTXX8UjlEnSOsBhGEZCZBLAlGDKdOm0hABRgOfQqvHeyLQrPXyT3T1RXBnHmJaMGo7sGZBFUBZCHEZBwB6pZAdiLumoCUpIcaVpjzFmBJyspSgZBdxpYquVTiXB8tftyUZD';
+      this.saveUserToStorage(user, accessToken)
+        .then(() => this.navigateHomePage())
+        .catch(e => console.log('Error saving user to storage', e));
+    }
+
   }
 
   onSuccessfulFacebookLogin(res: FacebookLoginResponse) {
     console.log('Successfully logged in from facebook.');
-    console.log('authResponse:', JSON.stringify(res.authResponse));
-
-    let nav = this.navCtrl;
+    console.log('res:', JSON.stringify(res));
     let env = this;
 
     let userId = res.authResponse.userID;
     let params = new Array<string>();
     console.log('Querying facebook API for user details...');
     env.fb.api("/me?fields=name", params)
-      .then(function (user) {
+      .then((user) => {
         console.log('Facebook API returned user', JSON.stringify(user));
 
         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
         console.log('Saving user in local storage...');
-        return env.storage.setItem('user', {
-          name: user.name,
-          picture: user.picture,
-          accessToken: res.authResponse.accessToken
-        });
+        return this.saveUserToStorage(user, res.authResponse.accessToken);
       })
-      .then(()=> {
-        console.log('User saved, moving to HomePage...');
-        nav.push(HomePage);
-        return Promise.resolve();
-      })
+      .then(() => this.navigateHomePage())
       .catch((e) => console.log('Error querying API and inserting to native storage', e));
   }
 
+  saveUserToStorage(user, accessToken) {
+    return this.storage.set('user', {
+      name: user.name,
+      picture: user.picture,
+      accessToken: accessToken
+    }).then(() => {
+      console.log('User saved, moving to HomePage...');
+      return Promise.resolve();
+    });
+  }
+
+  navigateHomePage() {
+    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push(HomePage);
+    return Promise.resolve();
+  }
 
 }

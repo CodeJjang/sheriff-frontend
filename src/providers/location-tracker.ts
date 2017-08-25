@@ -12,6 +12,7 @@ export class LocationTracker {
   public lng: number = 0;
 
   constructor(public zone: NgZone, private geolocation: Geolocation, private backgroundGeolocation: BackgroundGeolocation) {
+    if (1===1) return;
     let config = {
       desiredAccuracy: 0,
       stationaryRadius: 20,
@@ -45,6 +46,7 @@ export class LocationTracker {
   }
 
   startTracking() {
+    if (1===1) return;
     console.log("Started tracking");
 
     console.log("Started background geolocation");
@@ -71,6 +73,7 @@ export class LocationTracker {
   }
 
   stopTracking() {
+    if (1===1) return;
     if (!this.fWatch) return;
 
     console.log('stopTracking');

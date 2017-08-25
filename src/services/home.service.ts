@@ -21,17 +21,22 @@ export class HomeService {
     sendImage(homeAlert: homeAlert) {
         let route = 'api/SnapshotHandler/receive';
         return this.storage.get("user").then(user => {
-            let objectToSend = JSON.stringify(Object.assign({
+            let objectToSend = Object.assign({
                 userId: user.userID
-            }, homeAlert));
+            }, homeAlert);
 
-            return this.http.post(this.appService.domain + route, objectToSend, this.appService.options)
+            console.log(objectToSend.userId);
+            return this.http.post(this.appService.domain + route, JSON.stringify(objectToSend), this.appService.options)
                 .subscribe(e => {
-                    const target = e.json();
+                    const res = e.json();
 
+                    if (!res) return;
+
+                    const target = JSON.parse(res);
+
+                    if (!Array.isArray(target) || !target.length) return;
+                    
                     console.log("Snapshot received - " + JSON.stringify(target));
-                    if (!target) return;
-
                     this.toastCtrl.create({
                         message: `סחטיין, עזרת לנו בשמירה על החוק :-)`,
                         position: "bottom",

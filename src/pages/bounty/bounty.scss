@@ -1,42 +1,38 @@
 page-bounty {
 
-    .alignmiddle
-    {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: 100%;
+  .alignmiddle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
 
-        img {
-            text-align: center;
-        }
+    img {
+      text-align: center;
     }
+  }
 
-    .icon50
-    {
-        font-size: 50px;
-    }
+  .icon50 {
+    font-size: 50px;
+  }
 
-    .icon20
-    {
-        font-size: 30px;
-    }
+  .icon20 {
+    font-size: 30px;
+  }
 
-    .round-icon
-    {
-        background: #488aff;
-        border-radius: 100%;
-        width: 100px;
-        color: white;
-    }
-    
-    .aligncenter
-    {
-        text-align: center;
-    }
+  .round-icon {
+    background: #488aff;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    color: white;
+  }
 
-    .payment {
-        color: forestgreen
-    }
+  .aligncenter {
+    text-align: center;
+  }
+
+  .payment {
+    color: forestgreen
+  }
 }

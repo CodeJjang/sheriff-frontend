@@ -8,18 +8,26 @@ import {Facebook} from '@ionic-native/facebook';
 import { IonicStorageModule } from '@ionic/storage';
 
 
-import {MyApp} from './app.component';
-import {HomePage} from '../pages/home/home';
-import {ListPage} from '../pages/list/list';
+import { HttpModule } from '@angular/http';
+
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+import { ListPage } from '../pages/list/list';
 import {LoginPage} from '../pages/login/login';
 import { BountyPage } from '../pages/bounty/bounty';
 import {StatisticsPage} from '../pages/statistics/statistics';
 
-import {StatusBar} from '@ionic-native/status-bar';
-import {ScreenOrientation} from '@ionic-native/screen-orientation';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {MediaCapture} from '@ionic-native/media-capture';
-import {CameraPreview} from '@ionic-native/camera-preview';
+import { AppService } from "../services/app.service";
+import { HomeService } from "../services/home.service";
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { MediaCapture } from '@ionic-native/media-capture';
+import { CameraPreview } from '@ionic-native/camera-preview';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocationTracker } from '../providers/location-tracker';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -38,6 +46,7 @@ const cloudSettings: CloudSettings = {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     CloudModule.forRoot(cloudSettings),
     IonicStorageModule.forRoot()
@@ -52,8 +61,13 @@ const cloudSettings: CloudSettings = {
     StatisticsPage
   ],
   providers: [
+    AppService,
     StatusBar,
     SplashScreen,
+    LocationTracker,
+    BackgroundGeolocation,
+    Geolocation,
+    HomeService,
     ScreenOrientation,
     MediaCapture,
     CameraPreview,

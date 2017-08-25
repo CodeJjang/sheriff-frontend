@@ -7,6 +7,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <p>statistics</p>
-</ion-content>
+<ion-tabs class="tabs-icon-text" [color]="isAndroid ? 'royal' : 'primary'">
+  <ion-tab tabIcon="person" tabTitle="Personal" [root]="personalStatisticsPage"></ion-tab>
+  <ion-tab tabIcon="people" tabTitle="General" [root]="generalStatisticsPage"></ion-tab>
+</ion-tabs>
+

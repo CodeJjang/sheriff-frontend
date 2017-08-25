@@ -11,10 +11,11 @@ import {HttpModule} from '@angular/http';
 
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
-import {ListPage} from '../pages/list/list';
 import {LoginPage} from '../pages/login/login';
 import {BountyPage} from '../pages/bounty/bounty';
 import {StatisticsPage} from '../pages/statistics/statistics';
+import {GeneralStatisticsPage} from '../pages/general-statistics/general-statistics';
+import {PersonalStatisticsPage} from '../pages/personal-statistics/personal-statistics';
 import {AboutPage} from '../pages/about/about';
 
 import {AppService} from "../services/app.service";
@@ -42,7 +43,9 @@ const cloudSettings: CloudSettings = {
     BountyPage,
     LoginPage,
     StatisticsPage,
-    AboutPage
+    AboutPage,
+    GeneralStatisticsPage,
+    PersonalStatisticsPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,9 @@ const cloudSettings: CloudSettings = {
     BountyPage,
     LoginPage,
     StatisticsPage,
-    AboutPage
+    AboutPage,
+    GeneralStatisticsPage,
+    PersonalStatisticsPage
   ],
   providers: [
     AppService,

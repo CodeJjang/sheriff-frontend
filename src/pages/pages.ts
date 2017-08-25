@@ -7,3 +7,5 @@ export * from './bounty/bounty';
 export * from './statistics/statistics';
 export * from './about/about';
 export * from './login/login';
+export * from './general-statistics/general-statistics';
+export * from './personal-statistics/personal-statistics';

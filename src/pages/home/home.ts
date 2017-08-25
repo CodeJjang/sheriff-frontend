@@ -83,7 +83,7 @@ export class HomePage {
                 lat: 64 + this.locationTracker.lat + "",
                 lon: 23 + this.locationTracker.lng + ""
               });
-              setTimeout(takePic, 1000);
+              setTimeout(takePic, 333);
             }, e => alert("kaka " + e));
           };
 

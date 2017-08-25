@@ -19,7 +19,7 @@
   </div>
   <div [ngClass]="{'wrapper': true, 'active': isSheriffActivated}">
     <button ion-button primary class="sheriffButton" [ngStyle]="{'background-image': 'url(' + sheriffButtonUrl + ')'}" class="sheriffButton" (click)="onClickBecomeSheriff()">
-      {{ isSheriffActivated ? "Quit Sheriff"  : "Become a Sheriff!" }}
+      {{ isSheriffActivated ? "Stop"  : "Become a Sheriff!" }}
     </button>
   </div>
   <img [ngClass]="{'snapshot': true, 'landscape': isLandscape}" [src]="lastImage" />

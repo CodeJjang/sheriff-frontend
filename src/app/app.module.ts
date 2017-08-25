@@ -4,6 +4,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {CloudSettings, CloudModule} from '@ionic/cloud-angular';
 import {Facebook} from '@ionic-native/facebook';
 import {NativeStorage} from '@ionic-native/native-storage';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { HttpModule } from '@angular/http';
 
@@ -60,6 +61,7 @@ const cloudSettings: CloudSettings = {
     AppService,
     StatusBar,
     SplashScreen,
+    BackgroundMode,
     LocationTracker,
     BackgroundGeolocation,
     Geolocation,

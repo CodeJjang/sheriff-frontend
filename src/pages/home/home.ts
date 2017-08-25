@@ -3,6 +3,7 @@ import { NavController, Platform } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import {NgZone} from '@angular/core';
 import { LocationTracker } from '../../providers/location-tracker';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { HomeService } from '../../services/home.service';
 
@@ -32,10 +33,12 @@ export class HomePage {
     private screenOrientation: ScreenOrientation,
     private locationTracker: LocationTracker,
     private zone: NgZone,
+    private backgroundMode: BackgroundMode,
     private cameraPreview: CameraPreview) {
 
     this.stop();
     this.updateIsLandscape();
+    this.backgroundMode.disableWebViewOptimizations();
     this.screenOrientation.onChange().subscribe(() => this.updateIsLandscape());
   }
 
@@ -49,20 +52,21 @@ export class HomePage {
     const cameraPreviewOpts: CameraPreviewOptions = {
       x: 5,
       y: 5,
-      width: 150,
-      height: 150,
+      width: 640,
+      height: 480,
       camera: 'rear',
-      toBack: false
+      toBack: true,
     };
 
     if (!this.isSheriffActivated) {
       // start camera
       console.log('Starting camera...');
-      
+
       this.cameraPreview.startCamera(cameraPreviewOpts).then(
         (res) => {
           console.log(res)
           this.locationTracker.startTracking();
+          this.backgroundMode.enable();
 
           const takePic = () => {
             if (!this.isSheriffActivated) return;
@@ -71,15 +75,16 @@ export class HomePage {
 
             (this.cameraPreview.takePicture as any)(e => {
               console.log("took it! " + e[0].substring(0,100));
+              console.log(e[0]);
               console.log("was at " + this.locationTracker.lat + "/" + this.locationTracker.lng);
               this.zone.run(() => this.lastImage = 'data:image/jpeg;base64,' + e[0]);
 
               this.homeService.sendImage({
                 base64Image: e[0],
-                lat: this.locationTracker.lat + "",
-                lon: this.locationTracker.lng + ""
+                lat: 64 + this.locationTracker.lat + "",
+                lon: 23 + this.locationTracker.lng + ""
               });
-              setTimeout(takePic, 300);
+              setTimeout(takePic, 1000);
             }, e => alert("kaka " + e));
           };
 
@@ -104,5 +109,6 @@ export class HomePage {
     this.cameraPreview.stopCamera().then(e => console.log("stopped", e)).catch(e => console.error("could not stop", e));
     clearTimeout(this.timeoutId);
     this.lastImage = null; 
+    this.backgroundMode.disable();
   }
 }

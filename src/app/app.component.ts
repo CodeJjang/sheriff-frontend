@@ -6,7 +6,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {Storage} from '@ionic/storage';
 import {Facebook} from '@ionic-native/facebook';
 
-import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pages/pages';
+import {HomePage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pages/pages';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +14,7 @@ import {HomePage, ListPage, BountyPage, StatisticsPage, AboutPage, LoginPage} fr
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
   activePage: any;
 
   pages: Array<{title: string, component: any}>;
@@ -26,7 +26,6 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       {title: 'Home', component: HomePage},
-      {title: 'List', component: ListPage},
       {title: 'Bounty', component: BountyPage},
       {title: 'Statistics', component: StatisticsPage},
       {title: 'About', component: AboutPage},
@@ -36,10 +35,12 @@ export class MyApp {
     this.storage.get('user').then(logged => {
       if (logged) {
         console.log('User is logged in, redirecting to Home Page...');
-        this.rootPage = HomePage;
+        // this.rootPage = HomePage
+        this.openPage(HomePage);
       } else {
         console.log('User is logged out, redirecting to Login Page...');
-        this.rootPage = LoginPage;
+        // this.rootPage = LoginPage;
+        this.openPage(LoginPage);
       }
     }).catch((e) => console.log('Error extracting user from storage', e));
 

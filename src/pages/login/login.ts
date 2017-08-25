@@ -88,7 +88,6 @@ export class LoginPage {
 
   navigateHomePage() {
     this.navCtrl.setRoot(HomePage);
-    this.navCtrl.push(HomePage);
     return Promise.resolve();
   }
 

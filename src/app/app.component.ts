@@ -36,11 +36,11 @@ export class MyApp {
       if (logged) {
         console.log('User is logged in, redirecting to Home Page...');
         // this.rootPage = HomePage
-        this.openPage(HomePage);
+        this.nav.setRoot(HomePage);
       } else {
         console.log('User is logged out, redirecting to Login Page...');
         // this.rootPage = LoginPage;
-        this.openPage(LoginPage);
+        this.nav.setRoot(LoginPage);
       }
     }).catch((e) => console.log('Error extracting user from storage', e));
 

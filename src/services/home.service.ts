@@ -45,7 +45,7 @@ export class HomeService {
                     
                     console.log("Snapshot received - " + JSON.stringify(target));
                     this.toastCtrl.create({
-                        message: `סחטיין, עזרת לנו בשמירה על החוק :-)`,
+                        message: `Good job, You just helped us make the world a better place!`,
                         position: "bottom",
                         duration: 5000
                     }).present();

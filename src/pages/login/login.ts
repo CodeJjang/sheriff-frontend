@@ -66,6 +66,7 @@ export class LoginPage {
         console.log('Facebook API returned user', JSON.stringify(user));
 
         user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+        user.userID = userId;
         console.log('Saving user in local storage...');
         return this.saveUserToStorage(user, res.authResponse.accessToken);
       })

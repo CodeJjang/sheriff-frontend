@@ -39,30 +39,16 @@
   <ion-card>
     <ion-list>
       <ion-list-header><b>My Catches</b></ion-list-header>
-      <ion-item>
+
+      <ion-item *ngFor="let target of bounties">
         <ion-avatar item-start>
           <ion-icon ios="ios-car" md="md-car" isActive="false"></ion-icon>
         </ion-avatar>
-        <h2>Audi A1 (+75$)</h2>
+        <h2>{{target.color}} {{target.maker}} {{target.model}} (+{{target.Amount}}$)</h2>
         <h4>77-777-77</h4>
         <p>Found Near Batya's Souvenir</p>
       </ion-item>
-      <ion-item>
-        <ion-avatar item-start>
-          <ion-icon ios="ios-car" md="md-car" isActive="false"></ion-icon>
-        </ion-avatar>
-        <h2>Bmw M2 (+100$)</h2>
-        <h4>22-222-22</h4>
-        <p>Found Near Dimona</p>
-      </ion-item>
-      <ion-item>
-        <ion-avatar item-start>
-          <ion-icon  ios="ios-car" md="md-car" isActive="false"></ion-icon>
-        </ion-avatar>
-        <h2>Ford Focus (+25$)</h2>
-        <h4>11-111-11</h4>
-        <p>Found Near Tel-Aviv</p>
-      </ion-item>
+
     </ion-list>
   </ion-card>
 

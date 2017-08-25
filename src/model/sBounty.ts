@@ -1,5 +1,9 @@
 export interface sBounty {
-    base64Image: string;
-    lat: string;
-    lon: string;
+    FoundUserId: string;
+    VehicleLicensePlate: string;
+    Amount: number;
+    IsPaid: boolean;
+    Model: string;
+    Maker: string;
+    Color: string;
 }

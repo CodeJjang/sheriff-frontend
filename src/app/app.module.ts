@@ -19,6 +19,7 @@ import {AboutPage} from '../pages/about/about';
 
 import {AppService} from "../services/app.service";
 import {HomeService} from "../services/home.service";
+import {BountyService} from "../services/bounty.service";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {ScreenOrientation} from '@ionic-native/screen-orientation';
@@ -62,6 +63,7 @@ const cloudSettings: CloudSettings = {
   ],
   providers: [
     AppService,
+    BountyService,
     StatusBar,
     SplashScreen,
     BackgroundMode,

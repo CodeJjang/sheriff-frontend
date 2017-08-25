@@ -39,7 +39,6 @@ const cloudSettings: CloudSettings = {
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     BountyPage,
     LoginPage,
     StatisticsPage,
@@ -56,7 +55,6 @@ const cloudSettings: CloudSettings = {
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     BountyPage,
     LoginPage,
     StatisticsPage,

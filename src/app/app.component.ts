@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
+import {Promise} from 'es6-promise';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Storage} from '@ionic/storage';
 import {Facebook} from '@ionic-native/facebook';
@@ -65,7 +66,12 @@ export class MyApp {
 
     console.log('Signing out...');
     return this.storage.remove('user')
-      .then(() => this.fb.logout())
+      .then(() => {
+        if(this.platform.is('cordova')) {
+          return this.fb.logout();
+        }
+        return Promise.resolve();
+      })
       .then(() => this.nav.push(LoginPage))
       .catch(e => console.log('Sign out failed', e));
   }

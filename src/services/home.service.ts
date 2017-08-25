@@ -32,7 +32,14 @@ export class HomeService {
 
                     if (!res) return;
 
-                    const target = JSON.parse(res);
+                    let target: any = null;
+
+                    try {
+                        target = JSON.parse(res);
+                    }
+                    catch (ex) {
+                        return; 
+                    }
 
                     if (!Array.isArray(target) || !target.length) return;
                     

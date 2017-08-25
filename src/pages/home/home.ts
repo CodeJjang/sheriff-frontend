@@ -75,7 +75,6 @@ export class HomePage {
 
             (this.cameraPreview.takePicture as any)(e => {
               console.log("took it! " + e[0].substring(0,100));
-              console.log(e[0]);
               console.log("was at " + this.locationTracker.lat + "/" + this.locationTracker.lng);
               this.zone.run(() => this.lastImage = 'data:image/jpeg;base64,' + e[0]);
 

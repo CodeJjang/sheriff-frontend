@@ -2,8 +2,15 @@ page-bounty {
 
     .alignmiddle
     {
-        vertical-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
+        width: 100%;
+
+        img {
+            text-align: center;
+        }
     }
 
     .icon50
@@ -13,19 +20,23 @@ page-bounty {
 
     .icon20
     {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .round-icon
     {
         background: #488aff;
         border-radius: 100%;
-        width: 50px;
+        width: 100px;
         color: white;
     }
     
     .aligncenter
     {
         text-align: center;
+    }
+
+    .payment {
+        color: forestgreen
     }
 }

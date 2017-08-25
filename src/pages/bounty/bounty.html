@@ -1,4 +1,4 @@
-<ion-header>
+ <ion-header>
   <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -12,12 +12,12 @@
      <ion-grid>
       <ion-row>
         <ion-col class="alignmiddle">
-           <ion-icon ios="ios-person" md="md-person" class="icon50 round-icon"></ion-icon>
+           <img class="icon50 round-icon" [src]="user.picture" />
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="alignmiddle">
-           <b>Eliran Efron</b>
+           <b>{{ user.name }}</b>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -27,7 +27,7 @@
           <div class="aligncenter">
             <button ion-button color="secondary">
             <ion-icon name="cash" isActive="false" class="icon20"></ion-icon> &nbsp;
-             Withdraw (200$)</button>
+             Withdraw (${{ total }})</button>
           </div>
         </ion-col>
         <ion-col>
@@ -42,10 +42,10 @@
 
       <ion-item *ngFor="let target of bounties">
         <ion-avatar item-start>
-          <ion-icon ios="ios-car" md="md-car" isActive="false"></ion-icon>
+          <ion-icon ios="ios-car" md="md-car" class="icon20" isActive="false"></ion-icon>
         </ion-avatar>
-        <h2>{{target.color}} {{target.maker}} {{target.model}} (+{{target.Amount}}$)</h2>
-        <h4>77-777-77</h4>
+        <h2>{{target.Color}} {{target.Maker}} {{target.Model}} (<span class="payment">${{target.Amount}}</span>)</h2>
+        <h4>{{ target.VehicleLicensePlate.substring(0,2) + "-" + target.VehicleLicensePlate.substring(2,5) + "-" + target.VehicleLicensePlate.substring(5,7) }}</h4>
         <p>Found Near Batya's Souvenir</p>
       </ion-item>
 

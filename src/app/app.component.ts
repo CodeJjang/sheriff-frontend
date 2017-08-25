@@ -1,12 +1,12 @@
-import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform} from 'ionic-angular';
-import {StatusBar} from '@ionic-native/status-bar';
-import {Promise} from 'es6-promise';
-import {SplashScreen} from '@ionic-native/splash-screen';
-import {Storage} from '@ionic/storage';
-import {Facebook} from '@ionic-native/facebook';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Promise } from 'es6-promise';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
+import { Facebook } from '@ionic-native/facebook';
 
-import {HomePage, BountyPage, StatisticsPage, AboutPage, LoginPage} from '../pages/pages';
+import { HomePage, BountyPage, StatisticsPage, AboutPage, LoginPage } from '../pages/pages';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,19 +17,19 @@ export class MyApp {
   rootPage: any;
   activePage: any;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-              public splashScreen: SplashScreen, private storage: Storage, private fb: Facebook) {
+    public splashScreen: SplashScreen, private storage: Storage, private fb: Facebook) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      {title: 'Home', component: HomePage},
-      {title: 'Bounty', component: BountyPage},
-      {title: 'Statistics', component: StatisticsPage},
-      {title: 'About', component: AboutPage},
-      {title: 'Sign Out', component: null} // handled in 'openPage' method
+      { title: 'Home', component: HomePage },
+      { title: 'Bounty', component: BountyPage },
+      { title: 'Statistics', component: StatisticsPage },
+      { title: 'About', component: AboutPage },
+      { title: 'Sign Out', component: null } // handled in 'openPage' method
     ];
 
     this.storage.get('user').then(logged => {
@@ -66,15 +66,18 @@ export class MyApp {
     }
 
     console.log('Signing out...');
-    return this.storage.remove('user')
-      .then(() => {
-        if(this.platform.is('cordova')) {
-          return this.fb.logout();
-        }
-        return Promise.resolve();
-      })
-      .then(() => this.nav.push(LoginPage))
-      .catch(e => console.log('Sign out failed', e));
+    return this.storage.get("user").then(user => {
+      if (!user) return;
+
+      return this.storage.remove('user')
+        .then(() => {
+          if (this.platform.is('cordova')) {
+            return this.fb.logout();
+          }
+          return Promise.resolve();
+        })
+        .catch(e => console.log('Sign out failed', e));
+    }).then(() => this.nav.push(LoginPage))
   }
 
   isPageActive(page) {
